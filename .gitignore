@@ -1,0 +1,30 @@
+# Pastas de build
+bin/
+obj/
+.vs/
+
+# Arquivos do Visual Studio
+*.user
+*.suo
+*.sln.docstates
+
+# Arquivos de log e cache
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos de configuração do Rider/Resharper
+.idea/
+*.DotSettings.user
+
+# Build do VS Code
+.vscode/
+
+# pacotes baixados
+packages/
+
+# Sistema de diretórios do Mac/Linux
+.DS_Store
+Thumbs.db
