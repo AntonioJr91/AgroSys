@@ -34,7 +34,6 @@
                 Console.ReadKey();
             }
         }
-
         public static void HandleAddCategory()
         {
             Console.Clear();

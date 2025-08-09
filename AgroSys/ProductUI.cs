@@ -4,39 +4,12 @@
     {
         public static void MenuProduct()
         {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("=== Gerenciamento de produtos ===\n");
-                Console.WriteLine("1. Adicionar produto");
-                Console.WriteLine("2. Listar produtos cadastrados");
-                Console.WriteLine("3. Pesquisar por produto");
-                Console.WriteLine("0. Voltar ao menu principal");
-                Console.Write("\nEscolha uma opção: ");
-                string? option = Console.ReadLine();
-
-                switch (option)
-                {
-                    case "1":
-                        HandleAddProduct();
-                        break;
-                    case "2":
-                        DisplayList();
-                        break;
-                    case "3":
-                        SearchForProductByName();
-                        break;
-                    case "0":
-                        Console.WriteLine("\nSaindo do gerenciador de produtos...");
-                        return;
-                    default:
-                        Console.WriteLine("\nOpção inválida. Tente novamente.");
-                        break;
-                }
-
-                Console.Write("\nPressione qualquer tecla para retornar...");
-                Console.ReadKey();
-            }
+            MenuHelper.ShowMenu(
+                        "Gerenciamento de Produtos",
+                        [HandleAddProduct, DisplayList, SearchForProductByName],
+                        "Voltar ao menu inicial",
+                        "Adicionar Produto", "Listar Produtos", "Pesquisar Produto"
+            );
         }
         public static void HandleAddProduct()
         {
@@ -47,25 +20,27 @@
             int amount = Utils.ReadAndValidateInput<int>("Insira a quantidade: ");
             decimal value = Utils.ReadAndValidateInput<decimal>("Insira o valor: R$");
 
-            Category category = ValidateCategoryName();
+            if (!TryGetCategory(out Category? category)) return;
 
-            Product newProduct = new(name, amount, value, category);
+            Product newProduct = new(name, amount, value, category!);
 
             ProductManager.AddProduct(newProduct);
         }
-        private static Category ValidateCategoryName()
+        private static bool TryGetCategory(out Category? category)
         {
             string name = Utils.ReadAndValidateInput<string>("Insira a categoria: ");
-            var category = ProductManager.CategoriesCollection
+
+            category = ProductManager.CategoriesCollection
                 .FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 
             if (category == null)
             {
                 Console.WriteLine("\nCategoria inexistente! Verifique os dados e tente novamente.");
-                return null!;
+                Console.ReadKey();
+                return false;
             }
 
-            return category;
+            return true;
         }
         public static void DisplayList()
         {
@@ -78,7 +53,7 @@
             {
                 Console.WriteLine("Nenhum produto cadastrado.");
                 return;
-            }           
+            }
 
             Console.WriteLine($"{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}");
             foreach (var p in ProductsColletion)
@@ -94,14 +69,14 @@
             string productName = Utils.ReadAndValidateInput<string>("Informe o nome do produto que deseja pesquisar: ");
             var productsCollection = ProductManager.ProductsCollection;
 
-            var product = productsCollection.FirstOrDefault(c => c.Name.Equals(productName,StringComparison.OrdinalIgnoreCase));
+            var product = productsCollection.FirstOrDefault(c => c.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
             if (product == null)
             {
                 Console.WriteLine("Produto não encontrado!");
                 return;
             }
-                Console.WriteLine($"\n{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}");
-                Console.WriteLine($"{product.Id,-5} {product.Name,-20} {product.Amount,-10} {product.Value,-10:C} {product.Category.Name,-15} {product.Created_At,-15}");
+            Console.WriteLine($"\n{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}");
+            Console.WriteLine($"{product.Id,-5} {product.Name,-20} {product.Amount,-10} {product.Value,-10:C} {product.Category.Name,-15} {product.Created_At,-15}");
         }
     }
 }
