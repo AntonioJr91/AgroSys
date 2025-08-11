@@ -4,20 +4,12 @@ namespace AgroSys
 {
     internal class ProductManager
     {
-        private static readonly List<Product> _ProductList = new();
-        private static readonly List<Category> _CategoriesList = new();
-        public static ReadOnlyCollection<Product> ProductsCollection => _ProductList.AsReadOnly();
-        public static ReadOnlyCollection<Category> CategoriesCollection => _CategoriesList.AsReadOnly();
-        public static void AddProduct(Product produto)
+        private static readonly List<Product> _productList = new();
+        public static ReadOnlyCollection<Product> ProductsCollection => _productList.AsReadOnly();
+        
+        public static void AddProduct(Product product)
         {
-            _ProductList.Add(produto);
-            Console.WriteLine("Produto adicionado com sucesso!");
-            Console.ReadKey();
-        }
-        public static void AddCategory(Category category)
-        {
-            _CategoriesList.Add(category);
-            Console.WriteLine("Categoria adicionada com sucesso!");
+            _productList.Add(product);
         }
     }
 }

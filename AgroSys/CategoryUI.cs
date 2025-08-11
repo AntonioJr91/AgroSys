@@ -2,65 +2,59 @@
 {
     internal class CategoryUI
     {
-        public static void MenuCategory()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("=== Gerenciamento de categorias ===\n");
-                Console.WriteLine("1. Adicionar categoria");
-                Console.WriteLine("2. Listar categorias cadastradas");
-                Console.WriteLine("0. Voltar ao menu principal");
-                Console.Write("\nEscolha uma opção: ");
-                string? option = Console.ReadLine();
-
-                switch (option)
-                {
-                    case "1":
-                        HandleAddCategory();
-                        break;
-                    case "2":
-                        DisplayList();
-                        break;
-                    case "0":
-                        Console.WriteLine("\nSaindo do gerenciador de produtos...");
-                        return;
-                    default:
-                        Console.WriteLine("\nOpção inválida. Tente novamente.");
-                        break;
-                }
-
-                Console.Write("\nPressione qualquer tecla para retornar...");
-                Console.ReadKey();
-            }
-        }
-        public static void HandleAddCategory()
+        public static void ShowCategoryHeader(string title)
         {
             Console.Clear();
-            Console.WriteLine("=== Adicionando uma nova categoria ===\n");
-
-            string name = Utils.ReadAndValidateInput<string>("Insira o nome: ");
-
-            Category newCategory = new(name);
-
-            ProductManager.AddCategory(newCategory);
+            Console.WriteLine($"=== {title} ===\n");
         }
-        public static void DisplayList()
+        public static void CategoryMenu()
         {
-            Console.Clear();
-            Console.WriteLine("=== Listagem de categorias ===\n");
+            MenuHelper.ShowMenu
+                (
+                    title: "Gerenciamento de Categorias",
+                    actions:
+                    [
+                        CategoryController.AddCategoryFlow,
+                        CategoryController.ShowCategoryList
+                    ],
+                    menuClosingMsg: "Voltar ao menu principal",
+                    options: ["Adicionar Categoria", "Listar Categorias"]
+                );
+        }
 
-            var CategoriesCollection = ProductManager.CategoriesCollection;
+        public static string ReadCategoryName() => Utils.ReadAndValidateInput<string>("Insira o nome: ");
 
-            if (!CategoriesCollection.Any())
-            {
-                Console.WriteLine("Nenhuma categoria cadastrado.");
-                return;
-            }
+        public static void ShowCategoryNotFoundMsg()
+        {
+            Console.Write("\nCategoria inexistente! Verifique os dados e tente novamente.");
+            Console.ReadKey();
+        }
+        public static void ShowCategoryAddedMsg()
+        {
+            Console.Write("\nCategoria adicionada com sucesso!");
+            Console.ReadKey();
+        }
 
+        public static void ShowCategoryTable(IEnumerable<Category> categories)
+        {
             Console.WriteLine($"{"Id",-5} {"Nome",-20}");
-            foreach (var c in CategoriesCollection)
+
+            foreach (var c in categories)
+            {
                 Console.WriteLine($"{c.Id,-5} {c.Name,-20}");
+            }
+
+        }
+        public static void ShowNoCategoryMsg()
+        {
+            Console.Write("\nNenhum categoria cadastrada.");
+            Console.ReadKey();
+        }
+
+        public static void ShowCategoryNotFound()
+        {
+            Console.Write("\nCategoria não encontrada!");
+            Console.ReadKey();
         }
     }
 }
