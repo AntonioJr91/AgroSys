@@ -1,6 +1,10 @@
-﻿namespace AgroSys
+﻿using AgroSys.Controllers;
+using AgroSys.Helpers;
+using AgroSys.Models;
+
+namespace AgroSys.UI
 {
-    internal class ProductUI
+    internal class MaterialUI
     {
         public static void ShowTitleProductHeader(string title)
         {
@@ -13,16 +17,16 @@
                 (
                     "Gerenciamento de Produtos",
                     [
-                        ProductController.AddProductFlow,
-                        ProductController.ShowProductList,
-                        ProductController.SearchProductByName
+                        MaterialController.AddProductFlow,
+                        MaterialController.ShowProductList,
+                        MaterialController.SearchProductByName
                     ],
                     "Voltar ao menu inicial",
                     "Adicionar Produto", "Listar Produtos", "Pesquisar Produto"
                 );
         }
         public static string ReadProductName() => Utils.ReadAndValidateInput<string>("Insira o nome: ");
-        public static int ReadProductAmount() => Utils.ReadAndValidateInput<int>("Insira a quantidade: ");
+        public static double ReadProductAmount() => Utils.ReadAndValidateInput<double>("Insira a quantidade: ");
         public static decimal ReadProductValue() => Utils.ReadAndValidateInput<decimal>("Insira o valor: R$");
         public static string ReadCategoryName() => Utils.ReadAndValidateInput<string>("Insira a categoria: ");
         public static void ShowProductAddedMsg()
@@ -30,12 +34,12 @@
             Console.Write("\nProduto adicionado com sucesso!");
             Console.ReadKey();
         }
-        public static void ShowProductTable(IEnumerable<Product> products)
+        public static void ShowProductTable(IEnumerable<Material> products)
         {
             Console.WriteLine($"{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}");
             foreach (var p in products)
             {
-                Console.WriteLine($"{p.Id,-5} {p.Name,-20} {p.Amount,-10} {p.Value,-10:C} {p.Category.Name,-15} {p.Created_At,-15}");
+                Console.WriteLine($"{p.Id,-5} {p.Name,-20} {p.Amount,-10:F3} {p.Value,-10:C} {p.Category.Name,-15} {p.Created_At,-15}");
             }
         }
 

@@ -1,4 +1,9 @@
-﻿namespace AgroSys
+﻿using AgroSys.Helpers;
+using AgroSys.Managers;
+using AgroSys.Models;
+using AgroSys.UI;
+
+namespace AgroSys.Controllers
 {
     internal class CategoryController
     {

@@ -1,4 +1,4 @@
-﻿namespace AgroSys
+﻿namespace AgroSys.Helpers
 {
     internal class Utils
     {
@@ -14,9 +14,9 @@
                     return (T)(object)input;
                 }
 
-                if (typeof(T) == typeof(int) && int.TryParse(input, out int convertedInt))
+                if (typeof(T) == typeof(double) && double.TryParse(input, out double convertedDouble))
                 {
-                    return (T)(object)convertedInt;
+                    return (T)(object)convertedDouble;
                 }
 
                 if (typeof(T) == typeof(decimal) && decimal.TryParse(input, out decimal convertedDecimal))

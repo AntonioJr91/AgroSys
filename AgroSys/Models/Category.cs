@@ -1,4 +1,4 @@
-﻿namespace AgroSys
+﻿namespace AgroSys.Models
 {
     internal class Category
     {

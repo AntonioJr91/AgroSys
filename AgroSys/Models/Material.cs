@@ -1,8 +1,8 @@
-﻿namespace AgroSys
+﻿namespace AgroSys.Models
 {
-    internal class Product
+    internal class Material
     {
-        public Product(string name, int amount, decimal value, Category category)
+        public Material(string name, double amount, decimal value, Category category)
         {
             Id = ++_Id;
             Name = name;
@@ -14,8 +14,8 @@
 
         private static int _Id = 0;
         public int Id { get; }
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
+        public string Name { get; set; }
+        public double Amount { get; set; }
         public decimal Value { get; set; }
         public Category Category { get; set; }
         public DateOnly Created_At { get; }

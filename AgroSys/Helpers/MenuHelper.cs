@@ -1,4 +1,4 @@
-﻿namespace AgroSys
+﻿namespace AgroSys.Helpers
 {
     internal static class MenuHelper
     {

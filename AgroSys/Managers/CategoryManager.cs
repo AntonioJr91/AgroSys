@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using AgroSys.Models;
+using System.Collections.ObjectModel;
 
-namespace AgroSys
+namespace AgroSys.Managers
 {
     internal class CategoryManager
     {
