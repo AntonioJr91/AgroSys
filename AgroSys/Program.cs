@@ -1,7 +1,7 @@
 ﻿using AgroSys.Helpers;
 using AgroSys.UI;
 
-string[] options = { "Produtos", "Categorias", "Ordem de Serviço", "Gerenciamento do Sistema" };
-Action[] actions = { MaterialUI.MenuProduct, CategoryUI.CategoryMenu };
+string[] options = { "Produtos", "Categorias", "Setor" };
+Action[] actions = { MaterialUI.MenuProduct, CategoryUI.CategoryMenu, SectorUI.MenuSector };
 
 MenuHelper.ShowMenu("Agro Sys", actions, "Encerrar o programa", options);
