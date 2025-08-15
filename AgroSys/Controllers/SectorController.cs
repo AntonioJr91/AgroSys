@@ -8,7 +8,7 @@ namespace AgroSys.Controllers
     {
         public static void AddSectorFlow()
         {
-            SectorUI.ShowTitleProductHeader("Adicionar Setor");
+            SectorUI.ShowTitle("Adicionar Setor");
 
             var sectorName = SectorUI.ReadSectorName();
 
@@ -26,7 +26,7 @@ namespace AgroSys.Controllers
         }
         public static void ShowSectorList()
         {
-            SectorUI.ShowTitleProductHeader("Lista de Setores");
+            SectorUI.ShowTitle("Lista de Setores");
 
             var sectorColletion = SectorManager.SectorCollection;
 
@@ -37,6 +37,7 @@ namespace AgroSys.Controllers
             }
 
             SectorUI.ShowSectorTable(sectorColletion);
+
             Console.ReadKey();
         }
     }

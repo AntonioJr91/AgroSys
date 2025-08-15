@@ -4,15 +4,9 @@ using AgroSys.Models;
 
 namespace AgroSys.UI
 {
-    internal class CategoryUI
+    internal class CategoryUI : BaseUI<Category>
     {
-        public static void ShowCategoryHeader(string title)
-        {
-            Console.Clear();
-            Console.WriteLine($"=== {title} ===\n");
-        }
-
-        public static void CategoryMenu()
+        public static void Menu()
         {
             MenuHelper.ShowMenu
                 (
@@ -31,35 +25,14 @@ namespace AgroSys.UI
 
         public static void ShowCategoryTable(IEnumerable<Category> categories)
         {
-            Console.WriteLine($"{"Id",-5} {"Nome",-20}");
-
-            foreach (var c in categories)
-            {
-                Console.WriteLine($"{c.Id,-5} {c.Name,-20}");
-            }
+            ShowTable(categories, c => new object[] { c.Id, c.Name }, new string[] { "Id", "Nome" });
 
         }
 
-        public static void ShowCategoryAddedMsg()
-        {
-            Console.Write("\nCategoria adicionada com sucesso!");
-            Console.ReadKey();
-        }
-        public static void ShowCategoryExistsMsg()
-        {
-            Console.Write("\nEsta Categoria já está cadastrada.");
-            Console.ReadKey();
-        }
-        public static void ShowCategoryNotFoundMsg()
-        {
-            Console.Write("\nCategoria inexistente! Verifique os dados e tente novamente.");
-            Console.ReadKey();
-        }
-        public static void ShowNoCategoryMsg()
-        {
-            Console.Write("\nNenhum categoria cadastrada.");
-            Console.ReadKey();
-        }
+        public static void ShowCategoryAddedMsg() => ShowMessage("Categoria adicionada com sucesso!");
+        public static void ShowCategoryExistsMsg() => ShowMessage("Esta Categoria já está cadastrada.");
+        public static void ShowCategoryNotFoundMsg() => ShowMessage("Categoria não encontrada!");
+        public static void ShowNoCategoryMsg() => ShowMessage("Nenhuma setor cadastrada.");
 
     }
 }

@@ -9,7 +9,7 @@ namespace AgroSys.Controllers
     {
         public static void AddCategoryFlow()
         {
-            CategoryUI.ShowCategoryHeader("Adicionar Categoria");
+            CategoryUI.ShowTitle("Adicionar Categoria");
 
             var categoryName = CategoryUI.ReadCategoryName();
 
@@ -27,7 +27,7 @@ namespace AgroSys.Controllers
         }
         public static void ShowCategoryList()
         {
-            CategoryUI.ShowCategoryHeader("Lista de Categoria");
+            CategoryUI.ShowTitle("Lista de Categoria");
 
             var categoriesCollection = CategoryManager.CategoriesCollection;
 

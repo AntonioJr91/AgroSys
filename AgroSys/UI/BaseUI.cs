@@ -2,15 +2,13 @@
 {
     internal abstract class BaseUI<T>
     {
-        protected abstract string EntityName { get; }
-
-        public void ShowTitle(string title)
+        public static void ShowTitle(string title)
         {
             Console.Clear();
             Console.WriteLine($"=== {title} ===\n");
         }
 
-        public void ShowTable(IEnumerable<T> items, Func<T, string[]> getColumns, string[] headers)
+        public static void ShowTable(IEnumerable<T> items, Func<T, object[]> getColumns, string[] headers)
         {
             for (int i = 0; i < headers.Length; i++)
             {
@@ -28,9 +26,9 @@
                 Console.WriteLine();
             }
         }
-        public void ShowMessage(string message)
+        public static void ShowMessage(string message)
         {
-            Console.WriteLine($"\n{message}");
+            Console.Write($"\n{message}");
             Console.ReadKey();
         }
     }

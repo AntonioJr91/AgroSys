@@ -4,15 +4,10 @@ using AgroSys.Models;
 
 namespace AgroSys.UI
 {
-    internal class SectorUI
+    internal class SectorUI : BaseUI<Sector>
     {
-        public static void ShowTitleProductHeader(string title)
-        {
-            Console.Clear();
-            Console.WriteLine($"=== {title} ===\n");
-        }
+        public static void Menu()
 
-        public static void MenuSector()
         {
             MenuHelper.ShowMenu
                 (
@@ -25,39 +20,17 @@ namespace AgroSys.UI
                     "Adicionar Setor", "Listar Setores"
                 );
         }
-
         public static string ReadSectorName() => Utils.ReadAndValidateInput<string>("Nome do Setor: ");
 
-        public static void ShowSectorTable(IEnumerable<Sector> sector)
+        public static void ShowSectorTable(IEnumerable<Sector> sectors)
         {
-            Console.WriteLine($"{"Nome",-20}");
-
-            foreach (var c in sector)
-            {
-                Console.WriteLine($"{c.Name,-20}");
-            }
-
+            ShowTable(sectors, s => new string[] { s.Name }, new string[] { "Nome" });
         }
 
-        public static void ShowSectorAddedMsg()
-        {
-            Console.Write("\nSetor adicionado com sucesso!");
-            Console.ReadKey();
-        }
-        public static void ShowSectorExistsMsg()
-        {
-            Console.Write("\nEste Setor já está cadastado.");
-            Console.ReadKey();
-        }
-        public static void ShowSectorNotFound()
-        {
-            Console.Write("\nSetor não encontrado!");
-            Console.ReadKey();
-        }
-        public static void ShowNoSectorMsg()
-        {
-            Console.Write("\nNenhum setor cadastrado.");
-            Console.ReadKey();
-        }
+        public static void ShowSectorAddedMsg() => ShowMessage("Setor adicionado com sucesso!");
+        public static void ShowSectorExistsMsg() => ShowMessage("Este Setor já está cadastrado.");
+        public static void ShowSectorNotFoundMsg() => ShowMessage("Setor não encontrado!");
+        public static void ShowNoSectorMsg() => ShowMessage("Nenhum setor cadastrado.");
     }
+
 }

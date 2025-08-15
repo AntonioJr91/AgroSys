@@ -4,15 +4,10 @@ using AgroSys.Models;
 
 namespace AgroSys.UI
 {
-    internal class MaterialUI
+    internal class MaterialUI : BaseUI<Material>
     {
-        public static void ShowTitleMaterialHeader(string title)
-        {
-            Console.Clear();
-            Console.WriteLine($"=== {title} ===\n");
-        }
 
-        public static void MenuMaterial()
+        public static void Menu()
         {
             MenuHelper.ShowMenu
                 (
@@ -32,34 +27,18 @@ namespace AgroSys.UI
         public static decimal ReadMaterialValue() => Utils.ReadAndValidateInput<decimal>("Insira o valor: R$");
         public static string ReadCategoryName() => Utils.ReadAndValidateInput<string>("Insira a categoria: ");
 
-        public static void ShowMaterialTable(IEnumerable<Material> Materials)
+        public static void ShowMaterialTable(IEnumerable<Material> materials)
         {
-            Console.WriteLine($"{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}");
-            foreach (var p in Materials)
-            {
-                Console.WriteLine($"{p.Id,-5} {p.Name,-20} {p.Amount,-10:F3} {p.Value,-10:C} {p.Category.Name,-15} {p.Created_At,-15}");
-            }
-        }
 
-        public static void ShowMaterialAddedMsg()
-        {
-            Console.Write("\nMaterial adicionado com sucesso!");
-            Console.ReadKey();
+            ShowTable(materials,
+                m => new object[] { $"{m.Id,-5} {m.Name,-20} {m.Amount,-10:F3} {m.Value,-10:C} {m.Category.Name,-15} {m.Created_At,-15}" },
+                new string[] { $"{"Id",-5} {"Nome",-20} {"Quantidade",-10} {"Valor",-10} {"Categoria",-15} {"Data de criação",-15}" }
+                );
         }
-        public static void ShowMaterialExistsMsg()
-        {
-            Console.Write("\nEste Material já está cadastado.");
-            Console.ReadKey();
-        }
-        public static void ShowNoMaterialMsg()
-        {
-            Console.Write("\nNenhum Material cadastrado.");
-            Console.ReadKey();
-        }
-        public static void ShowMaterialNotFound()
-        {
-            Console.Write("\nMaterial não encontrado!");
-            Console.ReadKey();
-        }
+        public static void ShowMaterialAddedMsg() => ShowMessage("Material adicionado com sucesso!");
+        public static void ShowMaterialExistsMsg() => ShowMessage("Este Material já está cadastrada.");
+        public static void ShowMaterialNotFoundMsg() => ShowMessage("Material não encontrado!");
+        public static void ShowNoMaterialMsg() => ShowMessage("Nenhuma Material cadastrada.");
+
     }
 }

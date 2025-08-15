@@ -9,7 +9,7 @@ namespace AgroSys.Controllers
     {
         public static void AddMaterialFlow()
         {
-            MaterialUI.ShowTitleMaterialHeader("Adicionar Material");
+            MaterialUI.ShowTitle("Adicionar Material");
 
             var name = MaterialUI.ReadMaterialName();
             var amount = MaterialUI.ReadMaterialAmount();
@@ -31,7 +31,7 @@ namespace AgroSys.Controllers
         }
         public static void ShowMaterialList()
         {
-            MaterialUI.ShowTitleMaterialHeader("Lista de Materiais");
+            MaterialUI.ShowTitle("Lista de Materiais");
 
             var MaterialsColletion = MaterialManager.MaterialsCollection;
 
@@ -46,7 +46,7 @@ namespace AgroSys.Controllers
         }
         public static void SearchMaterialByName()
         {
-            MaterialUI.ShowTitleMaterialHeader("Procurando Produto");
+            MaterialUI.ShowTitle("Procurando Produto");
 
             string MaterialName = Utils.ReadAndValidateInput<string>("\nInforme o nome do Material que deseja pesquisar: ");
             Console.WriteLine();
@@ -56,7 +56,7 @@ namespace AgroSys.Controllers
 
             if (Material == null)
             {
-                MaterialUI.ShowMaterialNotFound();
+                MaterialUI.ShowMaterialNotFoundMsg();
                 return;
             }
 
