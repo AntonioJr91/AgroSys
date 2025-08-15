@@ -44,13 +44,16 @@ namespace AgroSys.UI
             Console.Write("\nSetor adicionado com sucesso!");
             Console.ReadKey();
         }
-
+        public static void ShowSectorExistsMsg()
+        {
+            Console.Write("\nEste Setor já está cadastado.");
+            Console.ReadKey();
+        }
         public static void ShowSectorNotFound()
         {
             Console.Write("\nSetor não encontrado!");
             Console.ReadKey();
         }
-
         public static void ShowNoSectorMsg()
         {
             Console.Write("\nNenhum setor cadastrado.");

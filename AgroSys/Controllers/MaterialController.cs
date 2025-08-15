@@ -7,60 +7,60 @@ namespace AgroSys.Controllers
 {
     internal class MaterialController
     {
-        public static void AddProductFlow()
+        public static void AddMaterialFlow()
         {
-            MaterialUI.ShowTitleProductHeader("Adicionar Produto");
+            MaterialUI.ShowTitleMaterialHeader("Adicionar Material");
 
-            var name = MaterialUI.ReadProductName();
-            var amount = MaterialUI.ReadProductAmount();
-            var value = MaterialUI.ReadProductValue();
+            var name = MaterialUI.ReadMaterialName();
+            var amount = MaterialUI.ReadMaterialAmount();
+            var value = MaterialUI.ReadMaterialValue();
 
             if (!CategoryController.TryGetCategory(out Category? category)) return;
 
-            var newProduct = new Material(name, amount, value, category!);
+            var newMaterial = new Material(name, amount, value, category!);
 
-            if (MaterialManager.ProductsCollection.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            if (MaterialManager.MaterialsCollection.Any(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
             {
-                MaterialUI.ShowProductExistsMsg();
+                MaterialUI.ShowMaterialExistsMsg();
                 return;
             }
 
-            MaterialManager.AddProduct(newProduct);
+            MaterialManager.AddMaterial(newMaterial);
 
-            MaterialUI.ShowProductAddedMsg();
+            MaterialUI.ShowMaterialAddedMsg();
         }
-        public static void ShowProductList()
+        public static void ShowMaterialList()
         {
-            MaterialUI.ShowTitleProductHeader("Lista de Produtos");
+            MaterialUI.ShowTitleMaterialHeader("Lista de Materiais");
 
-            var productsColletion = MaterialManager.ProductsCollection;
+            var MaterialsColletion = MaterialManager.MaterialsCollection;
 
-            if (!productsColletion.Any())
+            if (!MaterialsColletion.Any())
             {
-                MaterialUI.ShowNoProductMsg();
+                MaterialUI.ShowNoMaterialMsg();
                 return;
             }
 
-            MaterialUI.ShowProductTable(productsColletion);
+            MaterialUI.ShowMaterialTable(MaterialsColletion);
             Console.ReadKey();
         }
-        public static void SearchProductByName()
+        public static void SearchMaterialByName()
         {
-            MaterialUI.ShowTitleProductHeader("Procurando Produto");
+            MaterialUI.ShowTitleMaterialHeader("Procurando Produto");
 
-            string productName = Utils.ReadAndValidateInput<string>("\nInforme o nome do produto que deseja pesquisar: ");
+            string MaterialName = Utils.ReadAndValidateInput<string>("\nInforme o nome do Material que deseja pesquisar: ");
             Console.WriteLine();
-            var productsCollection = MaterialManager.ProductsCollection;
+            var MaterialsCollection = MaterialManager.MaterialsCollection;
 
-            var product = productsCollection.FirstOrDefault(c => c.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+            var Material = MaterialsCollection.FirstOrDefault(c => c.Name.Equals(MaterialName, StringComparison.OrdinalIgnoreCase));
 
-            if (product == null)
+            if (Material == null)
             {
-                MaterialUI.ShowProductNotFound();
+                MaterialUI.ShowMaterialNotFound();
                 return;
             }
 
-            MaterialUI.ShowProductTable(new[] { product });
+            MaterialUI.ShowMaterialTable(new[] { Material });
             Console.ReadKey();
         }
     }

@@ -5,12 +5,12 @@ namespace AgroSys.Managers
 {
     internal class MaterialManager
     {
-        private static readonly List<Material> _productList = new();
-        public static ReadOnlyCollection<Material> ProductsCollection => _productList.AsReadOnly();
+        private static readonly List<Material> _MaterialList = new();
+        public static ReadOnlyCollection<Material> MaterialsCollection => _MaterialList.AsReadOnly();
         
-        public static void AddProduct(Material product)
+        public static void AddMaterial(Material Material)
         {
-            _productList.Add(product);
+            _MaterialList.Add(Material);
         }
     }
 }

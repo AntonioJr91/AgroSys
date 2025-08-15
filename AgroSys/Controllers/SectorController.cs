@@ -14,8 +14,7 @@ namespace AgroSys.Controllers
 
             if (SectorManager.SectorCollection.Any(s => s.Name.Equals(sectorName, StringComparison.OrdinalIgnoreCase)))
             {
-                Console.Write($"A [{sectorName}] já está cadastado.");
-                Console.ReadKey();
+                SectorUI.ShowSectorExistsMsg();
                 return;
             }
 
@@ -25,7 +24,6 @@ namespace AgroSys.Controllers
 
             SectorUI.ShowSectorAddedMsg();
         }
-
         public static void ShowSectorList()
         {
             SectorUI.ShowTitleProductHeader("Lista de Setores");

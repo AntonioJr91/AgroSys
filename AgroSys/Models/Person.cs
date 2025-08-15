@@ -2,9 +2,9 @@
 
 namespace AgroSys.Models
 {
-    internal abstract class Person
+    internal  class Person
     {
-        protected Person(string name, string lastName, int age, PositionType position)
+        public Person(string name, string lastName, int age, PositionType position)
         {
             Name = name;
             LastName = lastName;

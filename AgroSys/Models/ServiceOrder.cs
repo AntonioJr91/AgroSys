@@ -10,9 +10,7 @@ namespace AgroSys.Models
                 ServiceType serviceType,
                 Person responsible,
                 Material materialUsed,
-                double materialAmount,
                 Sector serviceSector,
-                DateTime? endDate,
                 string anotacao
             )
         {
@@ -20,11 +18,10 @@ namespace AgroSys.Models
             ServiceType = serviceType;
             Responsible = responsible;
             MaterialUsed = materialUsed;
-            MaterialAmount = materialAmount;
             ServiceSector = serviceSector;
             Status = Status.Progress;
             StartDate = DateTime.Now;
-            EndDate = endDate;
+            EndDate = null;
             Comment = anotacao;
         }
 
@@ -32,7 +29,6 @@ namespace AgroSys.Models
         public ServiceType ServiceType { get; set; }
         public Person Responsible { get; set; }
         public Material MaterialUsed { get; set; }
-        public double MaterialAmount { get; set; }
         public Sector ServiceSector { get; set; }
         public Status Status { get; set; }
         public DateTime StartDate { get; }

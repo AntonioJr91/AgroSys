@@ -15,8 +15,7 @@ namespace AgroSys.Controllers
 
             if (CategoryManager.CategoriesCollection.Any(c => c.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase)))
             {
-                Console.Write($"A [{categoryName}] já está cadastada.");
-                Console.ReadKey();
+                CategoryUI.ShowCategoryExistsMsg();
                 return;
             }
 
@@ -50,8 +49,7 @@ namespace AgroSys.Controllers
 
             if (category == null)
             {
-                Console.WriteLine("\nCategoria inexistente! Verifique os dados e tente novamente.");
-                Console.ReadKey();
+                CategoryUI.ShowCategoryNotFoundMsg();
                 return false;
             }
 

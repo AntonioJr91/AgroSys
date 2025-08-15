@@ -11,6 +11,7 @@ namespace AgroSys.UI
             Console.Clear();
             Console.WriteLine($"=== {title} ===\n");
         }
+
         public static void CategoryMenu()
         {
             MenuHelper.ShowMenu
@@ -28,17 +29,6 @@ namespace AgroSys.UI
 
         public static string ReadCategoryName() => Utils.ReadAndValidateInput<string>("Insira o nome: ");
 
-        public static void ShowCategoryNotFoundMsg()
-        {
-            Console.Write("\nCategoria inexistente! Verifique os dados e tente novamente.");
-            Console.ReadKey();
-        }
-        public static void ShowCategoryAddedMsg()
-        {
-            Console.Write("\nCategoria adicionada com sucesso!");
-            Console.ReadKey();
-        }
-
         public static void ShowCategoryTable(IEnumerable<Category> categories)
         {
             Console.WriteLine($"{"Id",-5} {"Nome",-20}");
@@ -49,16 +39,27 @@ namespace AgroSys.UI
             }
 
         }
+
+        public static void ShowCategoryAddedMsg()
+        {
+            Console.Write("\nCategoria adicionada com sucesso!");
+            Console.ReadKey();
+        }
+        public static void ShowCategoryExistsMsg()
+        {
+            Console.Write("\nEsta Categoria já está cadastrada.");
+            Console.ReadKey();
+        }
+        public static void ShowCategoryNotFoundMsg()
+        {
+            Console.Write("\nCategoria inexistente! Verifique os dados e tente novamente.");
+            Console.ReadKey();
+        }
         public static void ShowNoCategoryMsg()
         {
             Console.Write("\nNenhum categoria cadastrada.");
             Console.ReadKey();
         }
 
-        public static void ShowCategoryNotFound()
-        {
-            Console.Write("\nCategoria não encontrada!");
-            Console.ReadKey();
-        }
     }
 }
